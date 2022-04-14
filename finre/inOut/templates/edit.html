@@ -22,7 +22,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{% static '/img/apple-icon.png' %}">
   <link rel="icon" type="image/png" href="{% static '/img/favicon.png' %}">
   <title>
-    details
+    edit
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -99,17 +99,20 @@
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="/">Home</a></li>
             {% if income %}
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Income</li>
+            <li class="breadcrumb-item text-sm text-dark" aria-current="page"><a href="/view/income/">Income</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">edit</li>
           </ol>
           <h6 class="font-weight-bolder mb-0">Income</h6>
           {% endif %}
           {% if expense %}
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Expense</li>
+          <li class="breadcrumb-item text-sm text-dark" aria-current="page"><a href="/view/expense/">Expense</a></li>
+          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">edit</li>
           </ol>
           <h6 class="font-weight-bolder mb-0">Expense</h6>
           {% endif %}
           {% if debt %}
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Debt</li>
+          <li class="breadcrumb-item text-sm text-dark" aria-current="page"><a href="/view/debt/">Debt</a></li>
+          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">edit</li>
           </ol>
           <h6 class="font-weight-bolder mb-0">Debt</h6>
           {% endif %}
@@ -151,82 +154,55 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Amount</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Index</th>
                     </tr>
-                    <tr>
-                      <form action="add/" method="post">
-                        <th>
-                      <input type="text" name="title" class="form-control" placeholder="title" aria-label="text" aria-describedby="text-addon">
-                        </th>
-                        <th>
-                      <input type="number" name="amount" class="form-control" placeholder="amount" aria-label="number" aria-describedby="number-addon">
-                        </th>
-                        <th>
-                      <button type="submit" class="badge badge-sm bg-gradient-success">ADD</button>
-                        </th>
-                      </form>
-                    </tr>
+                    
                   </thead>
                   <tbody>
-                    {% if income %}
-                      {% for item in income %}
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">{{ item.title }}</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">{{ item.amount }}</p>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-secondary"><a href="../../delete/income/{{ item.id }}">delete</a></span>
-                        <span class="badge badge-sm bg-gradient-success"><a href="../../edit/income/{{ item.id }}">edit</a></span>
-
-                      </td>
-                    </tr>
+                      {% if income %}
+                    <tr>
+                        <form action="/edit/income/{{ income.id }}" method="post"> {% csrf_token %} 
+                          <th>
+                        <input type="text" value="{{ income.title }}" name="title" class="form-control" placeholder="title" aria-label="text" aria-describedby="text-addon">
+                          </th>
+                          <th>
+                        <input type="number" value="{{ income.amount }}" name="amount" class="form-control" placeholder="amount" aria-label="number" aria-describedby="number-addon">
+                          </th>
+                          <th>
+                        <button type="submit" class="badge badge-sm bg-gradient-success">EDIT</button>
+                          </th>
+                        </form>
+                      </tr>
+                      {% endif %}
+                      {% if expense %}
+                    <tr>
+                        <form action="/edit/expense/{{ expense.id }}" method="post"> {% csrf_token %} 
+                          <th>
+                        <input type="text" value="{{ expense.title }}" name="title" class="form-control" placeholder="title" aria-label="text" aria-describedby="text-addon">
+                          </th>
+                          <th>
+                        <input type="number" value="{{ expense.amount }}" name="amount" class="form-control" placeholder="amount" aria-label="number" aria-describedby="number-addon">
+                          </th>
+                          <th>
+                        <button type="submit" class="badge badge-sm bg-gradient-success">EDIT</button>
+                          </th>
+                        </form>
+                      </tr>
+                      {% endif %}
+                      {% if debt %}
+                    <tr>
+                        <form action="/edit/debt/{{ debt.id }}" method="post"> {% csrf_token %} 
+                          <th>
+                        <input type="text" value="{{ debt.title }}" name="title" class="form-control" placeholder="title" aria-label="text" aria-describedby="text-addon">
+                          </th>
+                          <th>
+                        <input type="number" value="{{ debt.amount }}" name="amount" class="form-control" placeholder="amount" aria-label="number" aria-describedby="number-addon">
+                          </th>
+                          <th>
+                        <button type="submit" class="badge badge-sm bg-gradient-success">EDIT</button>
+                          </th>
+                        </form>
+                      </tr>
+                      {% endif %}
                   </tbody>
-                  {% endfor %}
-                  {% endif %}
-                  {% if expense %}
-                      {% for item in expense %}
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">{{ item.title }}</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">{{ item.amount }}</p>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-secondary"><a href="../../delete/expense/{{ item.id }}">delete</a></span>
-                        <span class="badge badge-sm bg-gradient-success"><a href="../../edit/expense/{{ item.id }}">edit</a></span>
-                      </td>
-                    </tr>
-                  </tbody>
-                  {% endfor %}
-                  {% endif %}
-                  {% if debt %}
-                      {% for item in debt %}
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">{{ item.title }}</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">{{ item.amount }}</p>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-secondary"><a href="../../delete/debt/{{ item.id }}">delete</a></span>
-                        <span class="badge badge-sm bg-gradient-success"><a href="../../edit/debt/{{ item.id }}">edit</a></span>
-                      </td>
-                    </tr>
-                  </tbody>
-                  {% endfor %}
-                  {% endif %}
                 </table>
               </div>
             </div>

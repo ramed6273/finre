@@ -1,0 +1,6 @@
+view:
+    edit
+templates:
+    edit
+
+check haeds

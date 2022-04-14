@@ -63,8 +63,9 @@
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
+        {% if user.username %}
         <li class="nav-item">
-          <a class="nav-link  " href="../pages/sign-in.html">
+          <a class="nav-link  " href="logout/">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>document</title>
@@ -80,9 +81,30 @@
                 </g>
               </svg>
             </div>
-            <span class="nav-link-text ms-1">Sign In</span>
+            <span class="nav-link-text ms-1">Logout</span>
           </a>
-        </li> 
+        </li>
+        {% endif %}
+        <!-- <li class="nav-item">
+          <a class="nav-link  " href="#">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>document</title>
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g transform="translate(1716.000000, 291.000000)">
+                      <g transform="translate(154.000000, 300.000000)">
+                        <path class="color-background opacity-6" d="M40,40 L36.3636364,40 L36.3636364,3.63636364 L5.45454545,3.63636364 L5.45454545,0 L38.1818182,0 C39.1854545,0 40,0.814545455 40,1.81818182 L40,40 Z"></path>
+                        <path class="color-background" d="M30.9090909,7.27272727 L1.81818182,7.27272727 C0.814545455,7.27272727 0,8.08727273 0,9.09090909 L0,41.8181818 C0,42.8218182 0.814545455,43.6363636 1.81818182,43.6363636 L30.9090909,43.6363636 C31.9127273,43.6363636 32.7272727,42.8218182 32.7272727,41.8181818 L32.7272727,9.09090909 C32.7272727,8.08727273 31.9127273,7.27272727 30.9090909,7.27272727 Z M18.1818182,34.5454545 L7.27272727,34.5454545 L7.27272727,30.9090909 L18.1818182,30.9090909 L18.1818182,34.5454545 Z M25.4545455,27.2727273 L7.27272727,27.2727273 L7.27272727,23.6363636 L25.4545455,23.6363636 L25.4545455,27.2727273 Z M25.4545455,20 L7.27272727,20 L7.27272727,16.3636364 L25.4545455,16.3636364 L25.4545455,20 Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1">sign-in</span>
+          </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link  " href="../pages/sign-up.html">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -105,7 +127,7 @@
             <span class="nav-link-text ms-1">Sign Up</span>
           </a>
         </li>
-      </ul>
+      </ul> -->
     </div>
     <div class="sidenav-footer mx-3 ">
       <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
@@ -117,7 +139,7 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="http://127.0.0.1:8000">Home</a></li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="/">Home</a></li>
             <!-- <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li> -->
           </ol>
           <h6 class="font-weight-bolder mb-0">Home</h6>
@@ -141,13 +163,13 @@
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
-                <div class="col-8"><a href="http://127.0.0.1:8000/view/income">
+                <div class="col-8"><a href="/view/income">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Income</p>
                     <h5 class="font-weight-bolder mb-0">
                       {{ income }}
                       <br>
-                      <span class="text-success text-sm font-weight-bolder">Tousand Tooman</span>
+                      <span class="text-success text-sm font-weight-bolder">Thousand Tooman</span>
                     </h5>
                   </div>
                 </div></a>
@@ -164,13 +186,13 @@
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
-                <div class="col-8"><a href="http://127.0.0.1:8000/view/expense">
+                <div class="col-8"><a href="/view/expense">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Expense</p>
                     <h5 class="font-weight-bolder mb-0">
                       {{ expense }}
                       <br>
-                      <span class="text-success text-sm font-weight-bolder">Tousand Tooman</span>
+                      <span class="text-success text-sm font-weight-bolder">Thousand Tooman</span>
                     </h5>
                   </div>
                 </div></a>
@@ -187,13 +209,13 @@
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
-                <div class="col-8"><a href="http://127.0.0.1:8000/view/debt">
+                <div class="col-8"><a href="/view/debt">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">debt</p>
                     <h5 class="font-weight-bolder mb-0">
                       {{ debt }}
                       <br>
-                      <span class="text-success text-sm font-weight-bolder">Tousand Tooman</span>
+                      <span class="text-success text-sm font-weight-bolder">Thousand Tooman</span>
                     </h5>
                   </div>
                 </div></a>
@@ -210,7 +232,7 @@
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
-                <div class="col-8"><a href="http://127.0.0.1:8000/view/income">
+                <div class="col-8"><a href="/view/income">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Total</p>
                     <h5 class="font-weight-bolder mb-0">
